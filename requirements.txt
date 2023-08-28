@@ -61,6 +61,8 @@ peewee==3.16.2
     # via newchess (..\..\pyproject.toml)
 pillow==10.0.0
     # via matplotlib
+psycopg2==2.9.7
+    # via newchess (..\..\pyproject.toml)
 pyecore==0.12.1
     # via pyesdl
 pyesdl==23.3.0

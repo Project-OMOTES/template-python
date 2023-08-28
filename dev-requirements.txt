@@ -89,6 +89,8 @@ platformdirs==3.9.1
     # via black
 pluggy==1.2.0
     # via pytest
+psycopg2==2.9.7
+    # via newchess (..\..\pyproject.toml)
 pycodestyle==2.10.0
     # via flake8
 pyecore==0.12.1

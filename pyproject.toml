@@ -26,6 +26,7 @@ dependencies = [
     "dataclass-wizard==0.22.2",
     "coloredlogs==15.0.1",
     "click==8.1.6",
+    "psycopg2==2.9.7",
 ]
 
 [project.optional-dependencies]
