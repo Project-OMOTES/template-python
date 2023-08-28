@@ -1,15 +1,8 @@
-[build-system]
-build-backend = "setuptools.build_meta"
-requires = ["setuptools ~= 67.7.2", "wheel ~= 0.40.0"]
-
-[tools.setuptools]
-packages = ["src/your_package"]
-
 [project]
-name = "your-package"
-version = "0.0.1"
-authors = [{ name = "NieuweWarmteNu", email = "info@nwn.nu" }]
-description = "your description"
+name = "newchess"
+version = "0.0.3"
+authors = [{ name = "yourname", email = "your.name@TNO-or-deltares.nl" }]
+description = "New CHESS"
 classifiers = [
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Programming Language :: Python :: 3",
@@ -24,26 +17,30 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Physics",
 ]
 
-dependencies = ["pandas == 2.0.1"]
-
+dependencies = [
+    "pandapipes==0.8.4",
+    "pyesdl==23.3.0",
+    "python-dotenv==1.0.0",
+    "peewee==3.16.2",
+    "dataclass-wizard==0.22.2",
+    "coloredlogs==15.0.1",
+    "click==8.1.6",
+]
 
 [project.optional-dependencies]
 dev = [
-    #    "pip-tools~=6.13.0", # Disabled because it causes a "file in use" error on win32. pkg is installed via create_venv script
-    "black~=23.7.0",
+    "pip-tools~=6.13.0",
+    "black~=22.1.0",
     "flake8==6.0.0",
     "Flake8-pyproject==1.2.3",
-    "flake8-docstrings==1.7.0",
-    "flake8-quotes==3.3.2",
-    "mypy==1.4.1",
     "pytest ~=7.3.1",
     "pytest-cov ~=4.0.0",
     "bump2version==1.0.1",
 ]
+
 doc = [
-    "sphinx==7.0.1",
-    "furo==2023.5.20",
-    "sphinx-copybutton==0.5.2",
+    "sphinx == 7.0.1",
+    "furo == 2023.5.20",
     #    "sphinx-rtd-theme ~=1.2.2"
 ]
 
@@ -51,10 +48,17 @@ doc = [
 homepage = "https://www.TNO-or-deltares.nl"
 documentation = "https://readthedocs.org"
 repository = "https://github.com"
-changelog = "https://github.com/MichielTukker/DeltaresPythonTemplate/blob/main/CHANGELOG.md"
+changelog = "somethingsomethine"
 
 [project.scripts]
-nwnsay = "your_package.main:main"
+newchess = "newchess.infrastructure.app:cmdline_app"
+
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools ~= 67.7.2", "wheel ~= 0.40.0"]
+
+[tools.setuptools]
+packages = ["src/newchess"]
 
 [tool.pytest.ini_options]
 addopts = "--cov=your_package --cov-report html --cov-report term-missing --cov-fail-under 95"
@@ -78,7 +82,15 @@ warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
 disallow_incomplete_defs = true
-exclude = ['venv/*', 'doc/*']
+exclude = [
+    'venv/*',
+    'doc/*',
+    'build',
+    'component',
+    'testscript',
+    'testmodel',
+    'tryouts.py',
+]
 
 # mypy per-module options:
 [[tool.mypy.overrides]]

@@ -219,3 +219,5 @@ fabric.properties
 !.idea/runConfigurations
 
 unit_test_coverage/
+
+.env.*

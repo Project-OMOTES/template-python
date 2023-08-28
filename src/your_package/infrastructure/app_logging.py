@@ -13,18 +13,17 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-"""Setup logging for this python application."""
+"""
+    Setup logging for this python application
+"""
 
 import logging
+import coloredlogs
 import sys
 from enum import Enum
 
-LOG_LEVEL: "LogLevel"
-
 
 class LogLevel(Enum):
-    """Simple enum to cover log levels for logging library."""
-
     DEBUG = logging.DEBUG
     INFO = logging.INFO
     WARNING = logging.WARNING
@@ -33,7 +32,7 @@ class LogLevel(Enum):
     @staticmethod
     def parse(value: str) -> "LogLevel":
         """
-        Parses a given string for LogLevel's.
+        parses a given string for LogLevel's
 
         Parameters
         ----------
@@ -61,9 +60,12 @@ class LogLevel(Enum):
         return result
 
 
-def setup_logging(log_level: LogLevel) -> None:
+LOG_LEVEL: LogLevel | None = None
+
+
+def setup_logging(log_level: LogLevel, colors: bool = True) -> None:
     """
-    Initializes logging.
+    Initializes logging
 
     Parameters
     ----------
@@ -72,14 +74,16 @@ def setup_logging(log_level: LogLevel) -> None:
     """
     global LOG_LEVEL
     root_logger = logging.getLogger()
-
-    print("Will use log level:", log_level)
+    root_logger.info("Will use log level:", log_level)
     root_logger.setLevel(log_level.value)
     LOG_LEVEL = log_level
-
-    log_handler = logging.StreamHandler(sys.stdout)
-    formatter = logging.Formatter(
-        fmt="%(asctime)s [%(threadName)s][%(filename)s:%(lineno)d]" "[%(levelname)s]: %(message)s"
-    )
-    log_handler.setFormatter(formatter)
-    root_logger.addHandler(log_handler)
+    if colors:
+        coloredlogs.install(log_level.value, logger=root_logger)
+    else:
+        log_handler = logging.StreamHandler(sys.stdout)
+        formatter = logging.Formatter(
+            fmt="%(asctime)s [%(threadName)s][%(filename)s:%(lineno)d][%(levelname)s]: %(message)s"
+        )
+        log_handler.setFormatter(formatter)
+        root_logger.addHandler(log_handler)
+    pass

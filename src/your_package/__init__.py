@@ -13,8 +13,9 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-"""__init__.py file containing the defaults."""
+"""
+    __init__.py file containing the defaults
+"""
 
 import importlib.metadata
-
 __version__ = importlib.metadata.version(__name__)
