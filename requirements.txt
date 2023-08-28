@@ -38,6 +38,7 @@ numpy==1.25.2
     # via
     #   contourpy
     #   matplotlib
+    #   newchess (..\..\pyproject.toml)
     #   pandapower
     #   pandas
     #   scipy
