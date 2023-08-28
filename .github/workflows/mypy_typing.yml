@@ -1,0 +1,23 @@
+name: MyPy type checks
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v3
+      - name: Set up Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+        
+      - name: Install mypy
+        run: |
+          pip install mypy
+
+      - name: Add mypy annotator
+        uses: pr-annotators/mypy-pr-annotator@v1.0.0
+
+      - name: Run mypy
+        run: |
+          mypy .
