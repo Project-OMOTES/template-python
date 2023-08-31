@@ -16,19 +16,11 @@ class ApplicationController:
         pass
 
     def execute(self) -> None:
-        # create database objects
-
+        current_uuid = UUID(self.configuration.simulation_id)
         input_db = self.repository_factory.get_input_repository(self.configuration.input_db)
         output_db = self.repository_factory.get_timeseries_repository(
             self.configuration.timeseries_db
         )
-
-        actor = RunSimulationUsecase(
-            UUID(self.configuration.simulation_id),
-            input_db,
-        )
+        actor = RunSimulationUsecase(current_uuid, input_db)
         output_timeseries = actor.execute()
-
-        # create output presenter and feed data into db
-
-        pass
+        output_db.store_time_series(current_uuid, output_timeseries)

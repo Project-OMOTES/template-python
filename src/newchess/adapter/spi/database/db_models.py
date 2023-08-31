@@ -14,6 +14,6 @@ class EsdlData(Model):
     esdl_data = TextField()
 
 
-class timeseries:
+class timeseries(Model):
     simulation_id = UUIDField()
     location = CharField()
