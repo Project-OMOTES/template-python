@@ -20,6 +20,7 @@ class InputRepositoryDb(InputDBRepositoryAbstract):
         self.db_connection.bind([SimulationSettings, EsdlData])
         self.simconfig_mapper = SimulationConfigurationMapper()
         self.esdl_data_mapper = EsdlDataMapper()
+        logger.debug(f"Started database connection: {self.db_connection}")
 
     def get_esdl_data(self, id: UUID) -> EsdlModel:
         """read ESDL info from db"""

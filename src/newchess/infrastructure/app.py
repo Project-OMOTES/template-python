@@ -37,7 +37,7 @@ def start_app(loglevel: str, colors: bool, simulation: str | None) -> None:
         app = create_app(simulation)
         app.execute()
     except Exception as error:
-        logger.error(error)
+        logger.error(f"Error occured: {error} at: {traceback.format_exc(limit=-1)}")
         logger.debug(traceback.format_exc())
 
 

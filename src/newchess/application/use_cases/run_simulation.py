@@ -26,6 +26,9 @@ class RunSimulationUsecase:
         settings = self.input_db.read_simulation_settings(self.simulation_id)
         esdl_data = self.input_db.get_esdl_data(self.simulation_id)
 
-        logger.info(f"loaded Esdl data and simulation settings: \n{esdl_data}\n{settings}")
+        logger.info(f"loaded Esdl data and simulation settings")
+        logger.debug(esdl_data)
+        logger.debug(settings)
+        logger.info("Running usecase.")
 
         return pd.DataFrame()
