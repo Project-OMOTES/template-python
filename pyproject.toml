@@ -8,7 +8,7 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
     "Operating System :: OS Independent",
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
     "Intended Audience :: Information Technology",
@@ -41,10 +41,10 @@ dev = [
 ]
 
 [project.urls]
-homepage = "https://www.TNO-or-deltares.nl"
+homepage = "https://www.nwn.nu"
 documentation = "https://readthedocs.org"
-repository = "https://github.com"
-changelog = "somethingsomethine"
+repository = "https://github.com/Nieuwe-Warmte-Nu/template-python.git"
+changelog = "https://github.com/Nieuwe-Warmte-Nu/template-python/blob/main/CHANGELOG.md"
 
 [project.scripts]
 newchess = "newchess.infrastructure.app:cmdline_app"
