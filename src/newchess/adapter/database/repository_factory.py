@@ -1,10 +1,10 @@
-from newchess.adapter.spi.database.db_connection_factory import DbConnectionFactory
+from newchess.adapter.database.db_connection_factory import DbConnectionFactory
 from newchess.application.repositories.input_db_repository_abstract import InputDBRepositoryAbstract
 from newchess.application.repositories.output_db_repository_abstract import (
     OutputDBRepositoryAbstract,
 )
-from newchess.adapter.spi.database.input_db_repository import InputRepositoryDb
-from newchess.adapter.spi.database.output_db_repository import OutputRepositoryDb
+from newchess.adapter.spi.input_db_repository import InputRepositoryDb
+from newchess.adapter.api.output_db_repository import OutputRepositoryDb
 
 import logging
 

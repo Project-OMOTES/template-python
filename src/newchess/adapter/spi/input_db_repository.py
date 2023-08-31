@@ -1,10 +1,10 @@
 from newchess.application.repositories.input_db_repository_abstract import InputDBRepositoryAbstract
 from newchess.domain.esdl_model import EsdlModel
 from newchess.domain.simulation_configuration import SimulationConfiguration
-from newchess.adapter.spi.database.db_connection import DbConnection
-from newchess.adapter.spi.database.mappers import SimulationConfigurationMapper, EsdlDataMapper
+from newchess.adapter.database.db_connection import DbConnection
+from newchess.adapter.database.mappers import SimulationConfigurationMapper, EsdlDataMapper
 from peewee import PostgresqlDatabase
-from newchess.adapter.spi.database.db_models import SimulationSettings, EsdlData
+from newchess.adapter.database.db_models import SimulationSettings, EsdlData
 from uuid import UUID
 import logging
 

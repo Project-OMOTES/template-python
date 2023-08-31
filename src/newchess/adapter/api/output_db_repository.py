@@ -2,15 +2,13 @@ from newchess.application.repositories.output_db_repository_abstract import (
     OutputDBRepositoryAbstract,
 )
 from newchess.domain.esdl_model import EsdlModel
-from newchess.domain.simulation_configuration import SimulationConfiguration
-from newchess.adapter.spi.database.db_connection import DbConnection
-from newchess.adapter.spi.database.mappers import (
-    SimulationConfigurationMapper,
+from newchess.adapter.database.db_connection import DbConnection
+from newchess.adapter.database.mappers import (
     EsdlDataMapper,
     TimeseriesMapper,
 )
 from peewee import PostgresqlDatabase
-from newchess.adapter.spi.database.db_models import SimulationSettings, EsdlData, timeseries
+from newchess.adapter.database.db_models import EsdlData, timeseries
 from uuid import UUID
 import pandas as pd
 import logging

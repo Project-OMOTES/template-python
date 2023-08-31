@@ -2,7 +2,7 @@ from newchess.application.mappers.db_mapper import DbMapper
 from newchess.domain.simulation_configuration import SimulationConfiguration
 from newchess.domain.esdl_model import EsdlModel
 
-from newchess.adapter.spi.database.db_models import SimulationSettings, EsdlData, timeseries
+from newchess.adapter.database.db_models import SimulationSettings, EsdlData, timeseries
 from uuid import UUID
 import pandas as pd
 

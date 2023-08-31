@@ -1,5 +1,5 @@
 from newchess.domain.application_configuration import ApplicationConfiguration
-from newchess.adapter.spi.database.db_connection import DbConnection
+from newchess.adapter.database.db_connection import DbConnection
 from peewee import PostgresqlDatabase
 
 import logging
