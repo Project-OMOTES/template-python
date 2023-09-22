@@ -1,0 +1,12 @@
+{
+  "maintainer_name": "Audrey Roy Greenfeld",
+  "maintainer_email": "audrey@deltares.nl",
+  "project_name": "New Chess",
+  "repo_name": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
+  "python_import_name": "{{ cookiecutter.repo_name|replace('-', '') }}",
+  "project_short_description": "Refreshingly simple static site generator.",
+  "_copy_without_render": [
+        ".github/**",
+        ".vscode/**"
+    ]
+}
