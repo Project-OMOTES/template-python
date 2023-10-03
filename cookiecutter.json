@@ -5,8 +5,8 @@
   "repo_name": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
   "python_import_name": "{{ cookiecutter.repo_name|replace('-', '') }}",
   "project_short_description": "A description on what this application within the Design Toolkit entails.",
+  "python_version": "3.11",
   "_copy_without_render": [
-        ".github/**",
         ".vscode/**"
     ]
 }

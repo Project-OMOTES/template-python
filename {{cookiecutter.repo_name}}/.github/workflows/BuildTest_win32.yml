@@ -9,14 +9,14 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        python-version: [3.11]
+        python-version: ["{{cookiecutter.python_version}}"]
 #        python-version: [3.8, 3.9, 3.10, 3.11]
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python {% raw %}${{ matrix.python-version }}{% endraw %}
       uses: actions/setup-python@v4
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
         cache: 'pip'
     - run: |
         .\ci\win32\create_venv.cmd
@@ -29,5 +29,3 @@ jobs:
     - name: Lint
       run: |
         .\ci\win32\lint.cmd
-
- 

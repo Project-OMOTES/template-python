@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
-python3 -m venv ./.venv
+python{{cookiecutter.python_version}} -m venv ./.venv
 . .venv/bin/activate
 pip3 install pip-tools
