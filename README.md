@@ -5,11 +5,26 @@ Use this as a template for starting your project.
 
 # Copying this template
 
-The template is based on a package called `your_package`. Due to the nature of python and python packaging, this name is spread througout the codebase. 
-Don't forget to change the following: 
+The template is build using cookiecutter. This is a commandline utility which can initialize a template using
+a list of input variables. To copy this template:
 
-* `pyproject.toml` file - This file contains the meta-data for your project. Please check 
-carefully and replace all references to `your_package` with your project name. 
-* `ci/<platform>/*`: several scripts to perform certain tasks. These scripts sometimes reference the package name and need to be changed to kee the script working.  
+```bash
+pip install cookiecutter
+cookiecutter https://github.com/Nieuwe-Warmte-Nu/template-python
+```
 
+Running this command it will ask a number of questions such as the name and e-mail of the main maintainer as well
+as the project name. After completing the survey, the repo is initialized locally and ready to be committed to Github.
 
+First, create the Github repository. Then run the following locally:
+
+```bash
+cd <whatever your repo is called>
+git init
+git remote add origin git@github.com:Nieuwe-Warmte-Nu/<your repo name>.git  # Github will show this URL in your repo.
+git add .
+git commit -m "Initial commit."
+git push origin main
+```
+
+Your repository should now be ready.
