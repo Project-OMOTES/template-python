@@ -1,2 +1,5 @@
 .idea
 .vscode
+
+!{{cookiecutter.repo_name}}/.vscode
+!{{cookiecutter.repo_name}}/.ìdea
