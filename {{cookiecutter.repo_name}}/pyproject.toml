@@ -76,11 +76,7 @@ exclude = [
     '.venv/*',
     'venv/*',
     'doc/*',
-    'build',
-    'component',
-    'testscript',
-    'testmodel',
-    'tryouts.py',
+    'ci/*',
 ]
 
 # mypy per-module options:
