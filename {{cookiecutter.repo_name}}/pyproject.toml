@@ -1,6 +1,6 @@
 [project]
 name = "{{cookiecutter.repo_name}}"
-version = "0.0.3"
+dynamic = ["version"]
 authors = [{ name = "{{ cookiecutter.maintainer_name }}", email = "{{ cookiecutter.maintainer_email }}" }]
 description = "{{cookiecutter.project_short_description}}"
 classifiers = [
@@ -53,10 +53,17 @@ newchess = "{{cookiecutter.python_import_name}}.infrastructure.app:cmdline_app"
 
 [build-system]
 build-backend = "setuptools.build_meta"
-requires = ["setuptools ~= 67.7.2", "wheel ~= 0.40.0"]
+requires = ["setuptools ~= 67.7.2", "wheel ~= 0.40.0", "setuptools-git-versioning<2"]
 
 [tools.setuptools]
 packages = ["src/{{cookiecutter.python_import_name}}"]
+
+[tool.setuptools-git-versioning]
+enabled = True
+version_file = "VERSION"
+count_commits_from_version_file = true
+dev_template = "{tag}.{branch}{ccount}"
+dirty_template = "{tag}.{branch}{ccount}"
 
 [tool.pytest.ini_options]
 addopts = "--cov={{cookiecutter.python_import_name}} --cov-report html --cov-report term-missing --cov-fail-under 95"
