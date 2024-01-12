@@ -2,4 +2,4 @@
 
 . .venv/bin/activate
 cd src/
-python -m your_package.main
+python -m {{cookiecutter.python_import_name}}
