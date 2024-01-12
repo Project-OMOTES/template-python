@@ -1,7 +1,7 @@
 
 echo "Creating virtual environment for development in new directory."
-.\ci\win32\create_venv.bat
+call ci\win32\create_venv.cmd
 echo "Updating dependencies"
-.\ci\win32\update_dependencies.bat
+call ci\win32\update_dependencies.cmd
 echo "Installing dependencies"
-.\ci\win32\install_dependencies.bat
+call ci\win32\install_dependencies.cmd
