@@ -1,7 +1,9 @@
 [project]
 name = "{{cookiecutter.repo_name}}"
 version = "0.0.3"
-authors = [{ name = "{{ cookiecutter.maintainer_name }}", email = "{{ cookiecutter.maintainer_email }}" }]
+authors = [
+    { name = "{{ cookiecutter.maintainer_name }}", email = "{{ cookiecutter.maintainer_email }}" },
+]
 description = "{{cookiecutter.project_short_description}}"
 classifiers = [
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
@@ -17,9 +19,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Physics",
 ]
 
-dependencies = [
-    "numpy==1.25.2",
-]
+dependencies = ["numpy==1.25.2"]
 
 [project.optional-dependencies]
 dev = [
@@ -31,7 +31,8 @@ dev = [
     "pytest-cov ~=4.0.0",
     "bump2version==1.0.1",
     "mypy ~= 1.5.1",
-    "build ~= 1.0.3"
+    "isort==5.13.2",
+    "build ~= 1.0.3",
 ]
 
 [project.urls]
@@ -66,18 +67,16 @@ count = true
 [tool.black]
 line-length = 100
 
+[tool.isort]
+profile = "black"
+
 [tool.mypy]
 python_version = "3.11"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
 disallow_incomplete_defs = true
-exclude = [
-    '.venv/*',
-    'venv/*',
-    'doc/*',
-    'ci/*',
-]
+exclude = ['.venv/*', 'venv/*', 'doc/*', 'ci/*']
 
 # mypy per-module options:
 [[tool.mypy.overrides]]
