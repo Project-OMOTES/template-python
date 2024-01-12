@@ -13,21 +13,24 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-"""Test script for python template."""
-from datetime import datetime
-import unittest
-from {{cookiecutter.python_import_name}} import main
+"""Main python file for {{cookiecutter.project_name}}."""
+from datetime import datetime, timedelta
 
+def testable_function(input: datetime):
+    """Testable function"""
+    return input + + timedelta(hours=1)
+    
 
-class MyTest(unittest.TestCase):
-    def test__testable_function__is_correct(self) -> None:
-        # Arrange
-        current_time = datetime(1970, 1, 1, 13, 00)
+def start_app(loglevel: str, colors: bool, simulation: str | None) -> None:
+    """{{cookiecutter.project_name}} application"""
+    try:
+        setup_logging(LogLevel.parse(loglevel), colors)
+        
+        # TODO insert your code here
 
-        # Act
-        result = main.testable_function(current_time)
+    except Exception as error:
+        logger.error(f"Error occured: {error} at: {traceback.format_exc(limit=-1)}")
+        logger.debug(traceback.format_exc())
 
-        # Assert
-        expected_result = datetime(1970, 1, 1, 14, 00)
-        self.assertEqual(expected_result, result)
-
+if __name__ == '__main__':
+    return_hello_world()

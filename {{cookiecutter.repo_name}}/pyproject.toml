@@ -17,9 +17,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Physics",
 ]
 
-dependencies = [
-    "numpy==1.25.2",
-]
+dependencies = ["numpy==1.25.2"]
 
 [project.optional-dependencies]
 dev = [
@@ -31,7 +29,8 @@ dev = [
     "pytest-cov ~=4.0.0",
     "bump2version==1.0.1",
     "mypy ~= 1.5.1",
-    "build ~= 1.0.3"
+    "isort==5.13.2",
+    "build ~= 1.0.3",
 ]
 
 [project.urls]
@@ -47,7 +46,7 @@ newchess = "{{cookiecutter.python_import_name}}.infrastructure.app:cmdline_app"
 build-backend = "setuptools.build_meta"
 requires = ["setuptools ~= 67.7.2", "wheel ~= 0.40.0", "setuptools-git-versioning<2"]
 
-[tools.setuptools]
+[tool.setuptools]
 packages = ["src/{{cookiecutter.python_import_name}}"]
 
 [tool.setuptools-git-versioning]
@@ -73,18 +72,16 @@ count = true
 [tool.black]
 line-length = 100
 
+[tool.isort]
+profile = "black"
+
 [tool.mypy]
 python_version = "3.11"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
 disallow_incomplete_defs = true
-exclude = [
-    '.venv/*',
-    'venv/*',
-    'doc/*',
-    'ci/*',
-]
+exclude = ['.venv/*', 'venv/*', 'doc/*', 'ci/*']
 
 # mypy per-module options:
 [[tool.mypy.overrides]]
