@@ -20,7 +20,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Physics",
 ]
 
-dependencies = ["numpy"]
+dependencies = []
 
 [project.optional-dependencies]
 dev = [
@@ -43,7 +43,7 @@ repository = "https://github.com/Nieuwe-Warmte-Nu/{{cookiecutter.repo_name}}"
 changelog = "https://github.com/Nieuwe-Warmte-Nu/{{cookiecutter.repo_name}}/blob/main/CHANGELOG.md"
 
 [project.scripts]
-{{cookiecutter.python_import_name}} = "{{cookiecutter.python_import_name}}.infrastructure.app:cmdline_app"
+{{cookiecutter.python_import_name}} = "{{cookiecutter.python_import_name}}:main"
 
 [build-system]
 build-backend = "setuptools.build_meta"
