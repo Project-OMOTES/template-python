@@ -1,7 +1,12 @@
 
 echo "Creating virtual environment for development in new directory."
-call ci\win32\create_venv.cmd
+py -{{cookiecutter.python_version}} -m venv venv
+call .\venv\Scripts\activate.bat
+python -m pip install pip-tools
+
 echo "Updating dependencies"
-call ci\win32\update_dependencies.cmd
+pip-compile --output-file=requirements.txt pyproject.toml
+pip-compile --extra=dev --output-file=dev-requirements.txt -c requirements.txt  pyproject.toml
+
 echo "Installing dependencies"
-call ci\win32\install_dependencies.cmd
+pip-sync .\dev-requirements.txt .\requirements.txt
