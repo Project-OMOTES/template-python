@@ -1,3 +1,3 @@
-from {{cookiecutter.python_import_name}} import main
+from {{cookiecutter.python_import_name}} import start_app
 
-main()
+start_app(loglevel="DEBUG", colors=True)

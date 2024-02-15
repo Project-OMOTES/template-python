@@ -15,14 +15,14 @@
 
 """Main python file for {{cookiecutter.project_name}}."""
 from datetime import datetime, timedelta
-from app_logging import setup_logging, LogLevel
+from {{cookiecutter.python_import_name}}.app_logging import setup_logging, LogLevel
 import logging
 import traceback
 
 logger = logging.getLogger(__name__)
 
 
-def testable_function(input: datetime):
+def testable_function(input: datetime) -> datetime:
     """Testable function"""
     return input + + timedelta(hours=1)
 
