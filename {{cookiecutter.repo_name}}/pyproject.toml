@@ -20,7 +20,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Physics",
 ]
 
-dependencies = []
+dependencies = ["coloredlogs~=15.0.1"]
 
 [project.optional-dependencies]
 dev = [
