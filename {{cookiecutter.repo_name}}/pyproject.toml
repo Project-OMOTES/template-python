@@ -57,8 +57,8 @@ requires = [
 enabled = true
 version_file = "VERSION"
 count_commits_from_version_file = true
-dev_template = "{tag}.{branch}{ccount}"
-dirty_template = "{tag}.{branch}{ccount}"
+dev_template = "{tag}.dev{ccount}"
+dirty_template = "{tag}.dev{ccount}"
 
 [tool.pytest.ini_options]
 addopts = "--cov={{cookiecutter.python_import_name}} --cov-report html --cov-report term-missing --cov-fail-under 95"
