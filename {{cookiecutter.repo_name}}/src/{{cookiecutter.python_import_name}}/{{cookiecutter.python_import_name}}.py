@@ -15,16 +15,23 @@
 
 """Main python file for {{cookiecutter.project_name}}."""
 from datetime import datetime, timedelta
+from app_logging import setup_logging, LogLevel
+import logging
+import traceback 
+
+logger = logging.getLogger(__name__)
 
 def testable_function(input: datetime):
     """Testable function"""
     return input + + timedelta(hours=1)
     
 
-def start_app(loglevel: str, colors: bool, simulation: str | None) -> None:
+def start_app(loglevel: str, colors: bool) -> None:
     """{{cookiecutter.project_name}} application"""
     try:
         setup_logging(LogLevel.parse(loglevel), colors)
+
+        logger.info(f"The time + 1 hour is: {testable_function(datetime.now())}")
         
         # TODO insert your code here
 
@@ -33,4 +40,4 @@ def start_app(loglevel: str, colors: bool, simulation: str | None) -> None:
         logger.debug(traceback.format_exc())
 
 if __name__ == '__main__':
-    return_hello_world()
+    start_app(loglevel="DEBUG", colors=True)
