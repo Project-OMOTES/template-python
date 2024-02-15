@@ -1,3 +1,12 @@
+if not exists .git (
+    echo "Creating git repo."
+    git init
+)
+
+echo "adding initial commit so gitversioning works."
+git add --all
+git commit -am "Initial commit from Cookiecutter template"
+
 
 echo "Creating virtual environment for development in new directory."
 py -{{cookiecutter.python_version}} -m venv venv
