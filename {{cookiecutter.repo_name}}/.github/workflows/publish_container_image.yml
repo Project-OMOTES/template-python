@@ -1,8 +1,9 @@
 {%- if cookiecutter.publish_container -%}
 name: Deply to GitHub Container Registry
-on: [ push ]
-tags:
-    - v*.*
+on:
+  push:
+    tags:
+      - v*.*
 
 jobs:
  publish-container-image:
