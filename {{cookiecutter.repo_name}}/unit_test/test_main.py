@@ -16,7 +16,7 @@
 """Test script for python template."""
 from datetime import datetime
 import unittest
-from {{cookiecutter.python_import_name}}.{{cookiecutter.python_import_name}} import testable_function
+from {{cookiecutter.python_import_name}} import {{cookiecutter.python_import_name}}
 
 
 class MyTest(unittest.TestCase):
@@ -25,7 +25,7 @@ class MyTest(unittest.TestCase):
         current_time = datetime(1970, 1, 1, 13, 00)
 
         # Act
-        result = testable_function(current_time)
+        result = {{cookiecutter.python_import_name}}.testable_function(current_time)
 
         # Assert
         expected_result = datetime(1970, 1, 1, 14, 00)
