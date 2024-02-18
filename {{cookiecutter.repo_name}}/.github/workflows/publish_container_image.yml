@@ -23,9 +23,9 @@ jobs:
 
    - name: Build the container image
      run: |
-      docker build . --tag ghcr.io/{{ cookiecutter.docker_username }}/{{ cookiecutter.container_name }}:latest
-      docker run ghcr.io/{{ cookiecutter.docker_username }}/{{ cookiecutter.container_name }}:latest
+      docker build . --tag ghcr.io/{{ cookiecutter.docker_username }}/{{ cookiecutter.container_name }}:latest --tag ghcr.io/{{ cookiecutter.docker_username }}/{{ cookiecutter.container_name }}:${{github.ref_name}}
       docker push ghcr.io/{{ cookiecutter.docker_username }}/{{ cookiecutter.container_name }}:latest
+      docker push ghcr.io/{{ cookiecutter.docker_username }}/{{ cookiecutter.container_name }}:${{github.ref_name}}
 {%- else -%}
 
 {% endif %}
