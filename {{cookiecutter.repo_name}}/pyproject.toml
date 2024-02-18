@@ -61,7 +61,7 @@ dev_template = "{tag}.dev{ccount}"
 dirty_template = "{tag}.dev{ccount}"
 
 [tool.pytest.ini_options]
-addopts = "--cov={{cookiecutter.python_import_name}} --cov-report html --cov-report term-missing --cov-fail-under 40"
+addopts = "--cov={{cookiecutter.python_import_name}} --cov-report html --cov-report term-missing --cov-fail-under 80"
 testpaths = ["unit_test"]
 
 [tool.coverage.run]
