@@ -1,4 +1,4 @@
-if not exists .git (
+if not exist .git (
     echo "Creating git repo."
     git init
 )
