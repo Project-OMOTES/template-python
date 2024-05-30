@@ -23,7 +23,7 @@ jobs:
 {% endraw %}
    - name: Build the container image
      run: |
-      docker build . --tag ghcr.io/{{ cookiecutter.docker_username }}/{{ cookiecutter.container_name }}:latest --tag ghcr.io/{{ cookiecutter.docker_username }}/{{ cookiecutter.container_name }}:${{github.ref_name}}
+      docker build . --tag ghcr.io/{{ cookiecutter.docker_username }}/{{ cookiecutter.container_name }}:latest --tag ghcr.io/{{ cookiecutter.docker_username }}/{{ cookiecutter.container_name }}:{% raw %}${{github.ref_name}}{% endraw %}
       docker push ghcr.io/{{ cookiecutter.docker_username }}/{{ cookiecutter.container_name }}:latest
       docker push ghcr.io/{{ cookiecutter.docker_username }}/{{ cookiecutter.container_name }}:{% raw %}${{github.ref_name}}{% endraw %}
 {%- else -%}
