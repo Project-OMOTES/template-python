@@ -22,7 +22,7 @@ jobs:
       - name: Run cookiecutter
         run: |
           pip install cookiecutter
-          cookiecutter $GITHUB_SERVER_URL/$GITHUB_REPOSITORY -c $GITHUB_SHA
+          cookiecutter --no-input $GITHUB_SERVER_URL/$GITHUB_REPOSITORY -c $GITHUB_SHA
           cd design_toolkit_application
 
       - name: flake8 Lint
