@@ -24,6 +24,7 @@ jobs:
           pip install cookiecutter
           sed -i 's/"python_version": "3\.[0-9]*"/"python_version": "${{ matrix.python-version }}"/gi' cookiecutter.json
           cookiecutter --no-input ./
+          ls -alh
           cd design_toolkit_application
 
       - name: flake8 Lint
