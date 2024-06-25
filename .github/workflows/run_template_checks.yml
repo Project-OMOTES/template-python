@@ -22,6 +22,7 @@ jobs:
       - name: Run cookiecutter
         run: |
           pip install cookiecutter
+          sed -i 's/"python_version": "3\.[0-9]*"/"python_version": "${{ matrix.python-version }}"/gi' cookiecutter.json
           cookiecutter --no-input $GITHUB_SERVER_URL/$GITHUB_REPOSITORY -c $GITHUB_SHA
           cd design_toolkit_application
 
