@@ -57,7 +57,7 @@ jobs:
 
           # Fail the workflow if no JUnit XML was found.
           # Default: true
-          fail-on-empty: false
+          fail-on-empty: true
       - name: Add mypy annotator
         uses: pr-annotators/mypy-pr-annotator@v1.0.0
 
