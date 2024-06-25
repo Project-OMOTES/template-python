@@ -15,9 +15,10 @@
 
 """Setup logging for this python application."""
 
-import logging
-import sys
 from enum import Enum
+import logging
+from typing import Optional
+import sys
 
 import coloredlogs
 
