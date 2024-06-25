@@ -28,11 +28,12 @@ jobs:
 
       - name: Run lint
         run: |
-          ls -alh
+          cd design-toolkit-application
           ./ci/linux/lint.sh
     
       - name: Run unit tests
         run: |
+          cd design-toolkit-application
           ./ci/linux/test_unit.sh
 
       - name: Surface failing tests
@@ -62,4 +63,5 @@ jobs:
 
       - name: Run typechecker
         run: |
+          cd design-toolkit-application
           ./ci/linux/typecheck.sh
