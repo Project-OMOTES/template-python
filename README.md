@@ -1,6 +1,6 @@
 # PythonTemplate
 
-This is an example of a python package / collection of scripts for Wanda team.
+This is an example of a python package / collection of scripts for Nieuwe Warmte Nu teams.
 Use this as a template for starting your project. 
 
 # Copying this template
@@ -10,7 +10,7 @@ a list of input variables. To copy this template:
 
 ```bash
 pip install cookiecutter
-cookiecutter https://github.com/Deltares-research/template-python-wanda
+cookiecutter https://github.com/Nieuwe-Warmte-Nu/template-python
 ```
 
 Running this command it will ask a number of questions such as the name and e-mail of the main maintainer as well
@@ -21,7 +21,7 @@ First, create the Github repository. Then run the following locally:
 ```bash
 cd <whatever your repo is called>
 git init
-git remote add origin <your repo name>.git  # Github will show this URL in your repo.
+git remote add origin git@github.com:Nieuwe-Warmte-Nu/<your repo name>.git  # Github will show this URL in your repo.
 git add .
 git commit -m "Initial commit."
 git push origin main

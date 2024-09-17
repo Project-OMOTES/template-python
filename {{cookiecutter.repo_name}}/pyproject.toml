@@ -38,10 +38,10 @@ dev = [
 ]
 
 [project.urls]
-homepage = "https://www.deltares.nl/en/software-and-data/products/wanda-software"
+homepage = "https://www.nwn.nu"
 documentation = "https://readthedocs.org"
-repository = "https://github.com/Deltares-research/{{cookiecutter.repo_name}}"
-changelog = "https://github.com/Deltares-research/{{cookiecutter.repo_name}}/blob/main/CHANGELOG.md"
+repository = "https://github.com/Nieuwe-Warmte-Nu/{{cookiecutter.repo_name}}"
+changelog = "https://github.com/Nieuwe-Warmte-Nu/{{cookiecutter.repo_name}}/blob/main/CHANGELOG.md"
 
 [project.scripts]
 {{cookiecutter.python_import_name}} = "{{cookiecutter.python_import_name}}:main"
