@@ -15,9 +15,10 @@
 
 """Setup logging for this python application."""
 
-import logging
-import sys
 from enum import Enum
+import logging
+from typing import Optional
+import sys
 
 import coloredlogs
 
@@ -61,7 +62,7 @@ class LogLevel(Enum):
         return result
 
 
-LOG_LEVEL: LogLevel | None = None
+LOG_LEVEL: Optional[LogLevel] = None
 
 
 def setup_logging(log_level: LogLevel, colors: bool = True) -> None:

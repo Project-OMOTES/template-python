@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.8, 3.10, 3.11]
+        python-version: ['3.8', '3.10', '3.11']
 
     name: Test cookiecutter template
     steps:
@@ -22,16 +22,18 @@ jobs:
       - name: Run cookiecutter
         run: |
           pip install cookiecutter
-          cookiecutter $GITHUB_SERVER_URL/$GITHUB_REPOSITORY -c $GITHUB_SHA
-          cd design_toolkit_application
+          sed -i 's/"python_version": "3\.[0-9]*"/"python_version": "${{ matrix.python-version }}"/gi' cookiecutter.json
+          cookiecutter --no-input ./
+          cd design-toolkit-application
 
-      - name: flake8 Lint
-        uses: TrueBrain/actions-flake8@v2
-        with:
-          plugins: Flake8-pyproject==1.2.3 flake8-docstrings==1.7.0 flake8-quotes==3.3.2 flake8-bugbear==23.9.16 flake8-mock==0.4 flake8-tuple==0.4.1
+      - name: Run lint
+        run: |
+          cd design-toolkit-application
+          ./ci/linux/lint.sh
     
       - name: Run unit tests
         run: |
+          cd design-toolkit-application
           ./ci/linux/test_unit.sh
 
       - name: Surface failing tests
@@ -41,7 +43,7 @@ jobs:
           # A list of JUnit XML files, directories containing the former, and wildcard
           # patterns to process.
           # See @actions/glob for supported patterns.
-          path: test-results.xml
+          path: ./design-toolkit-application/test-results.xml
 
           # Add a summary of the results at the top of the report
           # Default: true
@@ -59,6 +61,7 @@ jobs:
       - name: Add mypy annotator
         uses: pr-annotators/mypy-pr-annotator@v1.0.0
 
-      - name: run typechecker
+      - name: Run typechecker
         run: |
+          cd design-toolkit-application
           ./ci/linux/typecheck.sh

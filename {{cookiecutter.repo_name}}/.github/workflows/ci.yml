@@ -3,110 +3,141 @@ name: Build-Test-Lint-etc (linux)
 on: [push]
 
 jobs:
-
-  flake8-lint:
-    runs-on: ubuntu-latest
-    name: Lint
-    steps:
-      - name: Check out source repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Set up Python environment
-        uses: actions/setup-python@v4
-        with:
-          python-version: {{cookiecutter.python_version}}
-      - name: flake8 Lint
-        uses: TrueBrain/actions-flake8@v2
-        with:
-          plugins: Flake8-pyproject==1.2.3 flake8-docstrings==1.7.0 flake8-quotes==3.3.2 flake8-bugbear==23.9.16 flake8-mock==0.4 flake8-tuple==0.4.1
-          # only_warn: 1  #causes action to always be succesful, but still provide annotations
-
-  test:
+  setup:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         python-version: ["{{cookiecutter.python_version}}"]
-#        python-version: [3.8, 3.9, 3.10, 3.11]
+    name: Setup
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python {% raw %}${{ matrix.python-version }}{% endraw %}
-      uses: actions/setup-python@v4
-      with:
-        python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
-        cache: 'pip'
-    - run: |
-        ./ci/linux/create_venv.sh
-        ./ci/linux/install_dependencies.sh
-
-    - name: run unit tests
-      run: |
-        ./ci/linux/test_unit.sh
-
-    - name: Surface failing tests
-      if: always()
-      uses: pmeier/pytest-results-action@main
-      with:
-        # A list of JUnit XML files, directories containing the former, and wildcard
-        # patterns to process.
-        # See @actions/glob for supported patterns.
-        path: test-results.xml
-
-        # Add a summary of the results at the top of the report
-        # Default: true
-        summary: true
-
-        # Select which results should be included in the report.
-        # Follows the same syntax as
-        # `pytest -r`
-        # Default: fEX
-        display-options: fEX
-
-        # Fail the workflow if no JUnit XML was found.
-        # Default: true
-        fail-on-empty: true
-
-  typecheck:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["{{cookiecutter.python_version}}"]
-#        python-version: [3.8, 3.9, 3.10, 3.11]
-    steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python {% raw %}${{ matrix.python-version }}{% endraw %}
-      uses: actions/setup-python@v4
-      with:
-        python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
-        cache: 'pip'
-    - run: |
-        ./ci/linux/create_venv.sh
-        ./ci/linux/install_dependencies.sh
-
-    - name: Add mypy annotator
-      uses: pr-annotators/mypy-pr-annotator@v1.0.0
-
-    - name: run typechecker
-      run: |
-        ./ci/linux/typecheck.sh
-
-  build:
-    name: Build the python package
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [ "{{cookiecutter.python_version}}" ]
-    steps:
+      # {% raw %}
       - uses: actions/checkout@v3
-      - name: Set up Python {% raw %}${{ matrix.python-version }}{% endraw %}
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
-          python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
+          python-version: ${{ matrix.python-version }}
           cache: 'pip'
       - run: |
           ./ci/linux/create_venv.sh
           ./ci/linux/install_dependencies.sh
+      - name: 'Tar venv'
+        run: tar -cvf venv.tar ./.venv/
+      - name: Save venv
+        uses: actions/upload-artifact@v4
+        with:
+          path: ./venv.tar
+          name: ${{ runner.os }}-python-${{ matrix.python-version }}-venv-${{github.run_id}}
+      # {% endraw %}
 
-      - name: build
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    needs: [ setup ]
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["{{cookiecutter.python_version}}"]
+    steps:
+      # {% raw %}
+      - uses: actions/checkout@v3
+      - name: Restore venv
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ runner.os }}-python-${{ matrix.python-version }}-venv-${{github.run_id}}
+      - name: Untar venv
+        run: tar -xvf venv.tar
+      - name: Run lint
+        run: |
+          ./ci/linux/lint.sh
+      # {% endraw %}
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: [ setup ]
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["{{cookiecutter.python_version}}"]
+    steps:
+      # {% raw %}
+      - uses: actions/checkout@v3
+      - name: Restore venv
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ runner.os }}-python-${{ matrix.python-version }}-venv-${{github.run_id}}
+      - name: Untar venv
+        run: tar -xvf venv.tar
+      - name: Run unit tests
+        run: |
+          ./ci/linux/test_unit.sh
+      - name: Surface failing tests
+        if: always()
+        uses: pmeier/pytest-results-action@main
+        with:
+          # A list of JUnit XML files, directories containing the former, and wildcard
+          # patterns to process.
+          # See @actions/glob for supported patterns.
+          path: test-results.xml
+
+          # Add a summary of the results at the top of the report
+          # Default: true
+          summary: true
+
+          # Select which results should be included in the report.
+          # Follows the same syntax as
+          # `pytest -r`
+          # Default: fEX
+          display-options: fEX
+
+          # Fail the workflow if no JUnit XML was found.
+          # Default: true
+          fail-on-empty: true
+      # {% endraw %}
+
+  typecheck:
+    name: Typecheck
+    runs-on: ubuntu-latest
+    needs: [ setup ]
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["{{cookiecutter.python_version}}"]
+    steps:
+      # {% raw %}
+      - uses: actions/checkout@v3
+      - name: Restore venv
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ runner.os }}-python-${{ matrix.python-version }}-venv-${{github.run_id}}
+      - name: Untar venv
+        run: tar -xvf venv.tar
+      - name: Add mypy annotator
+        uses: pr-annotators/mypy-pr-annotator@v1.0.0
+      - name: Run typechecker
+        run: |
+          ./ci/linux/typecheck.sh
+      # {% endraw %}
+
+  build:
+    name: Build the python package
+    runs-on: ubuntu-latest
+    needs: [ setup ]
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ "{{cookiecutter.python_version}}" ]
+    steps:
+      # {% raw %}
+      - uses: actions/checkout@v3
+      - name: Restore venv
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ runner.os }}-python-${{ matrix.python-version }}-venv-${{github.run_id}}
+      - name: Untar venv
+        run: tar -xvf venv.tar
+      - name: Build
         run: |
           ./ci/linux/build_python_package.sh
+      # {% endraw %}
